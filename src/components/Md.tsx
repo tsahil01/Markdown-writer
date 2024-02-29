@@ -35,7 +35,7 @@ export default function Md() {
     const [markdown, setMarkdown] = useState(defaultText);
 
     return (
-        <div className="flex md:flex-row flex-col gap-4 justify-between p-5 px-9">
+        <div className="flex md:flex-row flex-col gap-4 justify-between p-5">
             <div className="outline-none rounded-lg dark:bg-zinc-800 block lg:w-1/2">
                 <textarea
                     className="w-full h-full rounded-md p-3 resize-none outline-none dark:bg-zinc-900 dark:text-white bg-slate-200"
