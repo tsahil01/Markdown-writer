@@ -10,25 +10,25 @@ import 'highlight.js/styles/github.css';
 const defaultText = `
 # Markdown Writer App
 
-Write and preview Markdown in real-time with this user-friendly ReactJS app.
+**Write and preview Markdown in real-time with this user-friendly ReactJS app.**
 
 ## Features
-
 - **Live Preview:** See Markdown rendering as you type.
 - **User-Friendly Interface:** Split-screen layout for an intuitive experience.
 - **Markdown Syntax Support:** Format text easily.
 
-## Usage
-
-1. Open the app in your browser.
-2. Write Markdown on the left, view the preview on the right.
 
 ## Technologies
-
 - **ReactJS**
-- **marked**
+- **TypeScript**
 - **react-markdown**
+- **Tailwind and Aceternity UI**
 
+## Usage
+1. Open [**<span style="color:orange; '"> eznote.vercel.app</span>**](https://eznote.vercel.app/) in your browser.
+2. Write Markdown on the left, view the preview on the right.
+
+- View [**README.md**](https://github.com/tsahil01/Markdown-writer/blob/master/README.md) for some common syntax
 `
 
 export default function Md() {
