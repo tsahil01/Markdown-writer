@@ -51,6 +51,7 @@ export default function Md() {
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
                     components={{
+                        //@ts-ignore
                         code({ node, inline, className, children, ...props }: { node: any, inline: boolean, className: string, children: any, props: any }) {
                             const match = /language-(\w+)/.exec(className || '');
 
