@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# Markdown Writer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Write and preview Markdown in real-time with this user-friendly ReactJS app.**
 
-Currently, two official plugins are available:
+## Features
+- **Live Preview:** See Markdown rendering as you type.
+- **User-Friendly Interface:** Split-screen layout for an intuitive experience.
+- **Markdown Syntax Support:** Format text easily.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Technologies
+- **ReactJS**
+- **TypeScript**
+- **react-markdown**
+- **Tainwind and Aceternity UI**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Usage
+1. Open **<span style="color:orange; '"> eznote.vercel.app</span>**   in your browser.
+2. Write Markdown on the left, view the preview on the right.
 
-- Configure the top-level `parserOptions` property like this:
+### Some Markdown syntax - 
+1. Headers:
+   ```t
+   # Heading 1
+   ## Heading 2
+   ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+2. Emphasis (italic):
+   ```code
+   *italic* or _italic_
+   ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. Strong emphasis (bold):
+   ```code
+   **bold** or __bold__
+   ```
+
+4. Lists:
+- Unordered list:
+   ```code
+   - Item 1
+   - Item 2
+   - Item 3
+   ```
+
+5. Images:
+   ```t
+   ![Alt text](URL)
+   ```
