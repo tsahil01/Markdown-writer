@@ -15,6 +15,7 @@ module.exports = {
     // rest of the code
   },
   plugins: [
+    require('@tailwindcss/typography'),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
