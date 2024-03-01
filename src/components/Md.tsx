@@ -37,9 +37,9 @@ export default function Md() {
 
     return (
         <div className="flex md:flex-row flex-col gap-4 justify-between p-5">
-            <div className="outline-none rounded-lg h-1/2 dark:bg-zinc-800 block lg:w-1/2">
+            <div className="outline-none rounded-lg md:min-h-1/2 dark:bg-zinc-800 block md:w-1/2 p-1">
             <Editor
-                    className="w-full md:h-full h-[30vh]"
+                    className="w-1/2 md:h-auto h-[30vh]"
                     defaultLanguage="markdown"
                     theme='vs-dark'
                     onChange={(e) => {
