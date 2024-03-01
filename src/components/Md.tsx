@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Editor from '@monaco-editor/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -36,17 +37,22 @@ export default function Md() {
 
     return (
         <div className="flex md:flex-row flex-col gap-4 justify-between p-5">
-            <div className="outline-none rounded-lg dark:bg-zinc-800 block lg:w-1/2">
-                <textarea
-                    className="w-full h-full rounded-md p-3 resize-none outline-none dark:bg-zinc-900 dark:text-white bg-slate-200"
-                    style={{ fontFamily: "inherit", fontSize: "16px" }}
-                    autoFocus={true}
-                    defaultValue={"Write the Code here"}
-                    onChange={(e) => setMarkdown(e.target.value)}
-                ></textarea>
+            <div className="outline-none rounded-lg h-1/2 dark:bg-zinc-800 block lg:w-1/2">
+            <Editor
+                    className="w-full md:h-full h-[50vh]"
+                    defaultLanguage="markdown"
+                    theme='vs-dark'
+                    onChange={(e) => {
+                        console.log(e);
+                        const newValue:any = e;
+                        setMarkdown(newValue);
+                    }}
+                    defaultValue={"// Enter your markdown text here"}
+                    loading= {<><h3>Loading..</h3></>}
+                />
             </div>
 
-            <div className="rounded-lg lg:w-1/2  overflow-auto outline-none">
+            <div className="rounded-lg lg:w-1/2 h-1/2 overflow-auto outline-none">
                 <ReactMarkdown className="markdown w-full h-full overflow-auto outline-none dark:bg-zinc-900 p-4 bg-slate-200 dark:text-white"
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
