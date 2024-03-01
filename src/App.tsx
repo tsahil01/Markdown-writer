@@ -1,4 +1,5 @@
 import Md from "./components/Md"
+//@ts-ignore
 import { Analytics } from "@vercel/analytics/react"
 
 function App() {
