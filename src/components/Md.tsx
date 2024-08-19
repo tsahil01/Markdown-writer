@@ -2,7 +2,7 @@ import { forwardRef, useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { Prism as SyntaxHighlighter, SyntaxHighlighterProps } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import "highlight.js/styles/github.css";
@@ -11,7 +11,7 @@ import { useReactToPrint } from "react-to-print";
 const defaultText = `
 # Markdown Writer App
 
-**Write and preview Markdown in real-time with this user-friendly ReactJS app.**
+**Write and preview Markdown in real-time with this user-friendly React app.**
 
 ## Features
 - **Live Preview:** See Markdown rendering as you type.
@@ -19,13 +19,13 @@ const defaultText = `
 - **Markdown Syntax Support:** Format text easily.
 
 ## Technologies
-- **ReactJS**
+- **React**
 - **TypeScript**
 - **react-markdown**
 - **Tailwind and Aceternity UI**
 
 ## Usage
-1. Open [**<span style="color:orange; '"> eznote.vercel.app</span>**](https://eznote.vercel.app/) in your browser.
+1. Open [**<span style="color:orange;"> eznote.vercel.app</span>**](https://eznote.vercel.app/) in your browser.
 2. Write Markdown on the left, view the preview on the right.
 
 - View [**README.md**](https://github.com/tsahil01/Markdown-writer/blob/master/README.md) for some common syntax
@@ -35,52 +35,60 @@ type PrintableMarkdownProps = {
   markdown: string;
 };
 
-const PrintableMarkdown = forwardRef(({ markdown }: PrintableMarkdownProps, ref) => (
-  <div ref={ref}>
-    <ReactMarkdown
-      className="markdown w-full h-full overflow-auto outline dark:bg-zinc-900 p-4 bg-white dark:text-white"
-      remarkPlugins={[remarkGfm]}
-      components={{
-        //@ts-ignore
-        code({ node, inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || "");
-          return !inline && match ? (
-            <SyntaxHighlighter
-              className="rounded-lg mx-4"
-              style={coldarkDark}
-              PreTag="div"
-              language={match[1]}
-              wrapLongLines={true} // Added to wrap long lines
-              {...props}
-            >
-              {String(children).replace(/\n$/, "")}
-            </SyntaxHighlighter>
-          ) : (
-            <code
-              className={className}
-              style={{
-                whiteSpace: "pre-wrap", // Ensures that code wraps within its container
-                wordBreak: "break-word", // Breaks long words
-              }}
-              {...props}
-            >
-              {children}
-            </code>
-          );
-        },
-      }}
-    >
-      {markdown}
-    </ReactMarkdown>
-  </div>
-));
+const PrintableMarkdown = forwardRef<HTMLDivElement, PrintableMarkdownProps>(
+  ({ markdown }, ref) => (
+    <div ref={ref}>
+      <ReactMarkdown
+        className="markdown w-full h-full overflow-auto outline-none dark:bg-zinc-900 p-4 bg-white dark:text-white"
+        remarkPlugins={[remarkGfm]}
+        components={{
+            // @ts-ignore
+          code({ node, inline, className, children, ...props }: { 
+            node?: any; 
+            inline?: boolean; 
+            className?: string; 
+            children: React.ReactNode; 
+            [key: string]: any; 
+          }) {
+            const match = /language-(\w+)/.exec(className || "");
+            return !inline && match ? (
+              <SyntaxHighlighter
+                className="rounded-lg mx-4"
+                style={coldarkDark}
+                PreTag="div"
+                language={match[1]}
+                wrapLongLines={true}
+                {...(props as SyntaxHighlighterProps)}
+              >
+                {String(children).replace(/\n$/, "")}
+              </SyntaxHighlighter>
+            ) : (
+              <code
+                className={className}
+                style={{
+                  whiteSpace: "pre-wrap",
+                  wordBreak: "break-word",
+                }}
+                {...props}
+              >
+                {children}
+              </code>
+            );
+          },
+        }}
+      >
+        {markdown}
+      </ReactMarkdown>
+    </div>
+  )
+);
 
 export default function Md() {
-  const [markdown, setMarkdown] = useState(defaultText);
-  const componentRef = useRef(null);
+  const [markdown, setMarkdown] = useState<string>(defaultText);
+  const componentRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    content: () => componentRef.current as HTMLDivElement | null,
   });
 
   return (
@@ -98,7 +106,7 @@ export default function Md() {
             defaultLanguage="markdown"
             theme="vs-dark"
             onChange={(e) => {
-              const newValue: any = e;
+              const newValue = e as string;
               setMarkdown(newValue);
             }}
             defaultValue={"// Enter your markdown text here"}
@@ -106,7 +114,7 @@ export default function Md() {
           />
         </div>
         <div className="rounded-lg lg:w-1/2 h-1/2 overflow-auto outline-none">
-          <PrintableMarkdown ref={componentRef} markdown={markdown}  />
+          <PrintableMarkdown ref={componentRef} markdown={markdown} />
         </div>
       </div>
     </>
