@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism"
 import { useReactToPrint } from "react-to-print"
-import { PrinterIcon, SunIcon, MoonIcon } from "lucide-react"
+import { PrinterIcon } from "lucide-react"
 import { Button } from "./ui/button"
 
 
