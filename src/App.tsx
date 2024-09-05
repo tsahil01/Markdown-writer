@@ -1,21 +1,15 @@
 import Md from "./components/Md"
 import { Analytics } from "@vercel/analytics/react"
 
-function App() {
+export default function App() {
   return (
     <>
-      <div className="min-h-screen w-full dark:bg-black bg-white dark:bg-grid-white/[0.1] bg-grid-black/[0.1] relative flex items-center justify-center">
-      {/* Radial gradient for the container to give a faded look */}
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-
-      {/* put componets here */}
-      <div className="z-40 w-full">
-        <Md/>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-1">
+        <div className="w-full max-w-8xl bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <Md />
+        </div>
       </div>
-    </div>
-    <Analytics/>
+      <Analytics />
     </>
   )
 }
-
-export default App
